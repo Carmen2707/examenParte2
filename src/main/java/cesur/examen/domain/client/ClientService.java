@@ -1,8 +1,10 @@
 package cesur.examen.domain.client;
 
+import cesur.examen.common.HibernateUtil;
 import cesur.examen.domain.car.Car;
 import cesur.examen.domain.car.CarDAO;
-
+import org.hibernate.Session;
+import org.hibernate.query.Query;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -27,9 +29,23 @@ public class ClientService {
      */
     public static List<Client> hasManufacturer(String manufacturer){
         var out= new ArrayList<Client>(0);
-
+        Session session=HibernateUtil.getSessionFactory().openSession();
         /* Implement method here */
-
+        try {
+            session.beginTransaction();
+            String Query = "select distinct car.client from Car car where car.manufacturer = :manufacturer";
+            Query <Client> query = session.createQuery(Query, Client.class);
+            query.setParameter("manufacturer", manufacturer);
+            out = new ArrayList<>(query.getResultList());
+            session.getTransaction().commit();
+        } catch (Exception e) {
+            if (session.getTransaction() != null) {
+                session.getTransaction().rollback();
+            }
+            e.printStackTrace();
+        } finally {
+            session.close();
+        }
         return out;
     }
 }

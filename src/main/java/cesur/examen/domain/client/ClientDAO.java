@@ -45,6 +45,10 @@ public class ClientDAO implements DAO<Client> {
         var out = new ArrayList<Client>();
 
         /* Implement method here */
+        try (Session s = HibernateUtil.getSessionFactory().openSession()) {
+            Query<Client> q = s.createQuery("from Client ", Client.class);
+            out = (ArrayList<Client>) q.getResultList();
+        }
 
         return out;
     }

@@ -10,7 +10,7 @@ import cesur.examen.domain.client.ClientService;
  * EXAMEN DE ACCESO A DATOS
  * Diciembre 2023
  *
- * Nombre del alumno:
+ * Nombre del alumno: Carmen Garcia Robles
  * Fecha:
  */
 public class App 
