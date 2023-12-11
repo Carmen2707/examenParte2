@@ -65,7 +65,7 @@ public class CarDAO implements DAO<Car> {
         return null;
     }
 
-    public List<Car> getAllByManufacturer(String manufacturer){
+    public static List<Car> getAllByManufacturer(String manufacturer){
         var out = new ArrayList<Car>();
 
 

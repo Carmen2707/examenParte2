@@ -6,7 +6,7 @@ import java.util.List;
  * EXAMEN DE ACCESO A DATOS
  * Diciembre 2023
  *
- * Nombre del alumno:
+ * Nombre del alumno: Carmen Garcia Robles
  * Fecha:
  */
 public interface DAO<T> {

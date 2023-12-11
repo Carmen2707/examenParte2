@@ -8,13 +8,14 @@ import org.hibernate.query.Query;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 /**
  * EXAMEN DE ACCESO A DATOS
  * Diciembre 2023
  *
- * Nombre del alumno:
- * Fecha:
+ * Nombre del alumno:Carmen Garcia Robles
+ * Fecha: 11/12/2023
  */
 
 public class ClientService {
@@ -29,23 +30,14 @@ public class ClientService {
      */
     public static List<Client> hasManufacturer(String manufacturer){
         var out= new ArrayList<Client>(0);
-        Session session=HibernateUtil.getSessionFactory().openSession();
+
         /* Implement method here */
-        try {
-            session.beginTransaction();
-            String Query = "select distinct car.client from Car car where car.manufacturer = :manufacturer";
-            Query <Client> query = session.createQuery(Query, Client.class);
-            query.setParameter("manufacturer", manufacturer);
-            out = new ArrayList<>(query.getResultList());
-            session.getTransaction().commit();
-        } catch (Exception e) {
-            if (session.getTransaction() != null) {
-                session.getTransaction().rollback();
-            }
-            e.printStackTrace();
-        } finally {
-            session.close();
+        List<Car> carsManufacturer= CarDAO.getAllByManufacturer(manufacturer);
+        Set<Client> clientSet=new HashSet<>();
+        for(Car car : carsManufacturer){
+            clientSet.add(car.getClient());
         }
+        out.addAll(clientSet);
         return out;
     }
 }
