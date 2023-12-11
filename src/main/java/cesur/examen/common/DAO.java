@@ -5,15 +5,16 @@ import java.util.List;
 /**
  * EXAMEN DE ACCESO A DATOS
  * Diciembre 2023
- *
+ * <p>
  * Nombre del alumno: Carmen Garcia Robles
  * Fecha:
  */
 public interface DAO<T> {
     /* Basic CRUD operations */
     /* All write methods return the updated object */
-    T save( T t);
-    T update( T t);
+    T save(T t);
+
+    T update(T t);
 
     /*
      * remove() returns true if object is successfully deleted.
@@ -21,7 +22,8 @@ public interface DAO<T> {
      */
     boolean remove(T t);
 
-    T get( Long id);
+    T get(Long id);
+
     List<T> getAll();
 
 }

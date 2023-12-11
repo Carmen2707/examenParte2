@@ -13,7 +13,7 @@ import java.util.List;
 /**
  * EXAMEN DE ACCESO A DATOS
  * Diciembre 2023
- *
+ * <p>
  * Nombre del alumno: Carmen Garcia Robles
  * Fecha: 11/12/2023
  */
@@ -27,13 +27,13 @@ import java.util.List;
 public class Client implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name ="id")
+    @Column(name = "id")
     private Long id;
-    @Column(name ="nombre")
+    @Column(name = "nombre")
     private String name;
-    @Column(name ="email")
+    @Column(name = "email")
     private String email;
-    @OneToMany(mappedBy = "client",fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "client", fetch = FetchType.EAGER)
     private List<Car> cars = new ArrayList<Car>(0);
 
     /**
@@ -43,7 +43,7 @@ public class Client implements Serializable {
      *
      * @param c Car to be added to the client.
      */
-    public void addCar(Car c){
+    public void addCar(Car c) {
         c.setClient(this);
         cars.add(c);
     }

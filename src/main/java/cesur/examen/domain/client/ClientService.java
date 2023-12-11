@@ -1,10 +1,8 @@
 package cesur.examen.domain.client;
 
-import cesur.examen.common.HibernateUtil;
 import cesur.examen.domain.car.Car;
 import cesur.examen.domain.car.CarDAO;
-import org.hibernate.Session;
-import org.hibernate.query.Query;
+
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -13,7 +11,7 @@ import java.util.Set;
 /**
  * EXAMEN DE ACCESO A DATOS
  * Diciembre 2023
- *
+ * <p>
  * Nombre del alumno:Carmen Garcia Robles
  * Fecha: 11/12/2023
  */
@@ -28,13 +26,13 @@ public class ClientService {
      * @param manufacturer
      * @return the list of clients
      */
-    public static List<Client> hasManufacturer(String manufacturer){
-        var out= new ArrayList<Client>(0);
+    public static List<Client> hasManufacturer(String manufacturer) {
+        var out = new ArrayList<Client>(0);
 
         /* Implement method here */
-        List<Car> carsManufacturer= CarDAO.getAllByManufacturer(manufacturer);
-        Set<Client> clientSet=new HashSet<>();
-        for(Car car : carsManufacturer){
+        List<Car> carsManufacturer = CarDAO.getAllByManufacturer(manufacturer);
+        Set<Client> clientSet = new HashSet<>();
+        for (Car car : carsManufacturer) {
             clientSet.add(car.getClient());
         }
         out.addAll(clientSet);

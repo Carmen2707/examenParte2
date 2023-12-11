@@ -11,7 +11,7 @@ import java.io.Serializable;
 /**
  * EXAMEN DE ACCESO A DATOS
  * Diciembre 2023
- *
+ * <p>
  * Nombre del alumno:
  * Fecha:
  */
@@ -34,12 +34,13 @@ public class Car implements Serializable {
     @Column(name = "fabricante")
     private String manufacturer;
     @ManyToOne
-    @JoinColumn(name="cliente")
+    @JoinColumn(name = "cliente")
     private Client client;
 
     /**
      * Override inherited toString() method to prevent stackOverFlow exceptions
      * from relationship.
+     *
      * @return
      */
     @Override
